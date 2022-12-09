@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Main Task page</title>
+
+</head>
+<body>
+<div class="taskTable">
+    <table class="table table-bordered border-primary">
+        <thead>
+        <tr>
+            <div class="text"><h1>TASK</h1></div>
+
+
+            <th scope="col">#</th>
+            <th scope="col">Task name   |</th>
+            <th scope="col">Task text   |</th>
+            <th scope="col">Deadline   |</th>
+            <th scope="col">edit   |</th>
+            <th scope="col">delete</th>
+
+        </tr>
+        </thead>
+        <div th:each="task:${tasks}">
+            <tbody>
+            <tr>
+                <th scope="row" th:text="${task.id}"></th>
+                <td th:text="${task.taskName}"></td>
+                <td th:text="${task.taskText}"></td>
+                <td th:text="${task.deadLine}"></td>
+
+
+
+                <td><a type="button" th:href="@{/editTask/{taskId}(taskId=${task.id})}" class="btn btn-warning">
+                    UPDATE</a></td>
+
+                <td>
+                    <form th:method="DELETE" th:action="@{/deleteTask/{id}/{lessonId}(id=${task.getId()},lessonId=${lessonId})}">
+                        <input type="submit" class="btn btn-danger" th:value="DELETE"/>
+                    </form>
+                </td>
+            </tr>
+        </div>
+    </table>
+
+    <div class="addTaskButton"><td><a th:href="@{/newTask/{lesId}(lesId=${lessonId})}"
+                                      class="btn btn-primary">ADD TASK</a></td></div>
+</div>
+
+<div class="button4"><a type="button" th:href="@{/allCompanies}"
+                      class="btn btn-primary"> MAIN PAGE</a></div>
+</body>
+</html>

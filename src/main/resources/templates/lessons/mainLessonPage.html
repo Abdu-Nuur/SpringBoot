@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Main Lesson page</title>
+
+</head>
+<body>
+
+<div>
+    <table class="table table-bordered border-primary">
+        <thead>
+        <tr>
+            <div class="text"><h1>LESSON</h1></div>
+
+
+            <th scope="col">#</th>
+            <th scope="col">Lesson name   |</th>
+            <th scope="col">task   |</th>
+            <th scope="col">video   |</th>
+            <th scope="col">update   |</th>
+            <th scope="col">delete</th>
+
+        </tr>
+        </thead>
+        <div th:each="lesson:${lessons}">
+            <tbody>
+            <tr>
+                <th scope="row" th:text="${lesson.id}"></th>
+                <td th:text="${lesson.lessonName}"></td>
+
+                <td><a type="button" class="btn btn-info" th:href="@{/allTasks/{lessonId}(lessonId=${lesson.getId()})}">task</a></td>
+
+                <td><a type="button" class="btn btn-info" th:href="@{/allVideos/{lessonId}(lessonId=${lesson.getId()})}">video</a></td>
+
+
+                <td><a type="button" th:href="@{/editLesson/{id}(id=${lesson.getId()})}" class="btn btn-warning">
+                    UPDATE</a></td>
+
+                <td>
+                    <form th:method="DELETE" th:action="@{/deleteLesson/{id}/{courseId}(id=${lesson.getId()},courseId=${courseId})}">
+                        <input type="submit" class="btn btn-danger" th:value="DELETE"/>
+                    </form>
+                </td>
+            </tr>
+        </div>
+
+    </table>
+
+    <div class="addCourseButton"><td><a th:href="@{/newLesson/{courseId}(courseId=${courseId})}"
+                                        class="btn btn-primary">ADD LESSON</a></td></div>
+</div>
+
+
+<div class="max"><a type="button" th:href="@{/allCompanies}"
+                      class="btn btn-primary"> MAIN PAGE</a></div>
+
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Main course page</title>
+</head>
+<body>
+
+
+<div class="container">
+    <table class="table table-bordered border-primary">
+        <thead>
+        <tr>
+            <div class="text"><h1>COURSES</h1></div>
+
+
+            <th scope="col">#</th>
+            <th scope="col">Course Name  |</th>
+            <th scope="col">Date of start   |</th>
+            <th scope="col">duration  |</th>
+            <th scope="col">image   |</th>
+            <th scope="col">description   |</th>
+            <th scope="col">lesson   |</th>
+            <th scope="col">update   |</th>
+            <th scope="col">delete   |</th>
+            <th scope="col">assign</th>
+
+        </tr>
+        </thead>
+        <div th:each="course:${courses}">
+            <tbody>
+            <tr>
+                <th scope="row" th:text="${course.getId()}"></th>
+                <td th:text="${course.getCourseName()}"></td>
+                <td th:text="${course.getDateOfStart()}"></td>
+                <td th:text="${course.getDuration()}"></td>
+                <td th:text="${course.getImage()}"></td>
+                <td th:text="${course.getDescription()}"></td>
+
+                <td><a th:href="@{/allLessons/{courseId}(courseId=${course.getId()})}"
+                       class="btn btn-info">lessons</a></td>
+                <td>
+                    <a th:href="@{/getAllGroupByCourseId/{courseId}(courseId=${course.id})}">
+                        <button>Groups</button>
+                    </a>
+                </td>
+
+                <td><a type="button" th:href="@{/editCourse/{id}/{companyId}(id=${course.getId()},companyId = ${companyId})}" class="btn btn-warning">
+                    UPDATE</a></td>
+
+                <td>
+                    <form th:method="DELETE" th:action="@{/deleteCourse/{courseId}/{compId}(courseId=${course.getId()},compId=${id})}">
+                        <input type="submit" class="btn btn-danger" th:value="DELETE"/>
+                    </form>
+                </td>
+                <td>
+                    <form th:method="POST"
+                          th:action="@{/{courseId}/{companyId}/assignInstructor(courseId=${course.getId()},companyId=${companyId})}">
+                        <select name="instructor" class="form-select form-select-sm"  aria-label=".form-select-sm example"
+                                th:object="${instructor}"
+                                th:field="*{id}">
+                            <option th:each="instructor : ${instructors}"
+                                    th:value="${instructor.getId()}"
+                                    th:text="${instructor.getFirstName()}">
+                            </option>
+                        </select>
+                        <input type="submit" value="assign" style="height: 30px;width: 60px; background: azure"/>
+                    </form>
+                </td>
+            </tr>
+        </div>
+    </table>
+
+    <div  class="addCourseButton"><td><a th:href="@{/newCourse/{id}(id=${id})}"
+                                         class="btn btn-primary">ADD COURSE</a></td></div>
+</div>
+
+<div class="button"><a type="button" th:href="@{/allCompanies}"
+        class="btn btn-primary"> MAIN PAGE</a></div>
+ 
+</body>
+</html>

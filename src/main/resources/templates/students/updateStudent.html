@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Student page</title>
+</head>
+<body>
+<form th:action="@{/{studentId}/{compId}/updateStudent(studentId=${student.getId()},compId=${companyId})}"
+      th:object="${student}"
+      th:method="PATCH">
+    <div class="mb-3">
+        <label for="firstName" class="form-label">First name</label>
+        <input type="text" class="form-control" id="firstName" aria-describedby="emailHelp" th:field="*{firstName}">
+    </div>
+
+    <div class="mb-3">
+        <label for="lastName" class="form-label">Last name</label>
+        <input type="text" class="form-control" id="lastName" th:field="*{lastName}">
+    </div>
+
+    <div class="mb-3">
+        <label for="phoneNumber" class="form-label">Phone number</label>
+        <input type="text" class="form-control" id="phoneNumber" th:field="*{phoneNumber}">
+    </div>
+
+    <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="text" class="form-control" id="email" th:field="*{email}">
+    </div>
+
+    <div class="mb-3">
+        <label for="studyFormat" class="form-label">Study format</label>
+        <input type="text" class="form-control" id="studyFormat" th:field="*{studyFormat}">
+    </div>
+
+    <button type="submit" class="btn btn-warning">UPDATE</button>
+</form>
+</body>
+</html>

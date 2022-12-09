@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Main Student page</title>
+
+
+</head>
+<body>
+
+
+<div>
+    <table class="table table-bordered border-primary">
+        <thead>
+        <tr>
+            <div class="text"><h1>STUDENT</h1></div>
+
+
+            <th scope="col">#</th>
+            <th scope="col">First name   |</th>
+            <th scope="col">Last name   |</th>
+            <th scope="col">Phone number   |</th>
+            <th scope="col">Email   |</th>
+            <th scope="col">Study format   |</th>
+            <th scope="col">update   |</th>
+            <th scope="col">delete   |</th>
+            <th scope="col">assign</th>
+
+        </tr>
+        </thead>
+        <div th:each="student:${students}">
+            <tbody>
+            <tr>
+                <th scope="row" th:text="${student.id}"></th>
+                <td th:text="${student.firstName}"></td>
+                <td th:text="${student.lastName}"></td>
+                <td th:text="${student.phoneNumber}"></td>
+                <td th:text="${student.email}"></td>
+                <td th:text="${student.studyFormat}"></td>
+
+                <td><a type="button" th:href="@{/editStudent/{studentId}(studentId=${student.getId()})}"
+                       class="btn btn-warning">UPDATE</a></td>
+                <td>
+                    <form th:method="DELETE"
+                          th:action="@{/{studentId}/{id}/deleteStudent(studentId=${student.getId()},id=${companyId})}">
+                        <input type="submit" class="btn btn-danger" th:value="DELETE"/></form>
+                </td>
+                <td>
+                    <form th:method="POST"
+                          th:action="@{/{companyId}/{studentId}/assign(studentId=${student.getId()},companyId=${companyId})}">
+                        <select class="form-select form-select-sm" aria-label=".form-select-sm example" th:object="${course}"
+                                th:field="${course.id}">
+                            <option th:each="course : ${courses}"
+                                    th:value="${course.id}"
+                                    th:text="${course.courseName}"></option>
+                        </select>
+                        <input type="submit" value="assign" style="height: 30px; width: 60px; background: darkseagreen;"/>
+                    </form>
+                </td>
+            </tr>
+        </div>
+
+    </table>
+
+    <div class="addInstructorButton">
+        <td><a th:href="@{/newStudent/{compId}(compId=${companyId})}"
+               class="btn btn-primary">ADD STUDENT</a></td>
+    </div>
+</div>
+
+    <div class="button3"><a type="button" th:href="@{/allCompanies}"
+                          class="btn btn-primary"> MAIN PAGE</a></div>
+</body>
+</html>

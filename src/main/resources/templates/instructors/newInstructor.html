@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New Instructor page</title>
+
+</head>
+<body>
+<div>
+    <form th:method="POST" th:action="@{/{companyId}/saveInstructor(companyId=${companyId})}"
+          th:object="${newInstructor}">
+        <input type="hidden" name = "id" th:field="*{id}">
+        <div class="mb-3">
+            <label for="firstName" class="form-label">First name</label>
+            <input type="text" class="form-control" id="firstName" aria-describedby="emailHelp" th:field="*{firstName}">
+        </div>
+        <div class="mb-3">
+            <label for="lastName" class="form-label">Last name</label>
+            <input type="text" class="form-control" id="lastName" th:field="*{lastName}">
+        </div>
+
+        <div class="mb-3">
+            <label for="phoneNumber" class="form-label">Phone number</label>
+            <input type="text" class="form-control" id="phoneNumber" th:field="*{phoneNumber}">
+        </div>
+
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="text" class="form-control" id="email" th:field="*{email}">
+        </div>
+
+        <div class="mb-3">
+            <label for="specialization" class="form-label">Specialization</label>
+            <input type="text" class="form-control" id="specialization" th:field="*{specialization}">
+        </div>
+
+        <button type="submit" class="btn btn-success">save instructor</button>
+    </form>
+</div>
+
+
+
+
+
+</body>
+</html>

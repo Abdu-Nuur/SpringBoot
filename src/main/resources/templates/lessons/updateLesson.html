@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Lesson page</title>
+
+</head>
+<body>
+
+<form th:method="PATCH"
+      th:action="@{/{courseId}/{lessonId}/updateLesson(courseId=${courseId},lessonId=${lesson.getId()})}"
+      th:object="${lesson}">
+    <div>
+        <label for="lessonName" class="form-label">Lesson name</label>
+        <input type="text" class="form-control" id="lessonName" th:field="*{lessonName}">
+    </div>
+    <button type="submit" class="btn btn-warning">UPDATE</button>
+</form>
+
+
+
+</body>
+</html>

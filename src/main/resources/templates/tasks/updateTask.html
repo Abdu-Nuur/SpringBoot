@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Task page</title>
+
+</head>
+<body>
+
+<form th:method="PATCH"
+      th:action="@{/{taskId}/{lessonId}/updateTask(taskId=${task.getId()},lessonId=${lessonId})}"
+      th:object="${task}">
+
+    <div class="mb-3">
+        <label for="taskName" class="form-label">Task name</label>
+        <input type="text" class="form-control" id="taskName" aria-describedby="emailHelp" th:field="*{taskName}">
+    </div>
+
+    <div class="mb-3">
+        <label for="taskText" class="form-label">Task text</label>
+        <input type="text" class="form-control" id="taskText" th:field="*{taskText}">
+    </div>
+
+    <div class="mb-3">
+        <label for="deadLine" class="form-label">Deadline</label>
+        <input type="date" class="form-control" id="deadLine" name="begin"
+               placeholder="mm-dd-yyyy" th:field="*{deadLine}">
+    </div>
+
+    <button type="submit" class="btn btn-warning">UPDATE</button>
+
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
